@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  body {
+    @apply bg-bg-main text-text-main font-sans;
+  }
+  
+  .glass-panel {
+    @apply bg-card-bg border border-white/5 rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-panel:hover {
+    @apply border-accent/30 shadow-[0_0_20px_rgba(0,210,211,0.1)];
+  }
+
+  .pill {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border;
+  }
+
+  /* Code Syntax Highlighting Colors */
+  .token-keyword { color: #c678dd; }
+  .token-string { color: #98c379; }
+  .token-function { color: #61afef; }
+  .token-comment { color: #5c6370; font-style: italic; }
+  .token-punctuation { color: #abb2bf; }
+  .token-property { color: #e5c07b; }
+}
