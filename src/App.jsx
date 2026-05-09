@@ -1,17 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
-
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
 import Expertise from './components/Expertise'
-import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Achievements from './components/Achievements'
-import Academic from './components/Academic'
+import Scholastics from './components/Scholastics'
 import Contact from './components/Contact'
-
 import Login from './components/Admin/Login'
 import Dashboard from './components/Admin/Dashboard'
 import ProtectedRoute from './components/Admin/ProtectedRoute'
@@ -19,14 +15,12 @@ import ProtectedRoute from './components/Admin/ProtectedRoute'
 const Portfolio = () => (
   <div className="bg-bg-main selection:bg-accent/30 selection:text-white">
     <Navbar />
-    <main>
+    <main className="pt-20">
       <Hero />
-      <About />
       <Expertise />
-      <Experience />
       <Projects />
       <Achievements />
-      <Academic />
+      <Scholastics />
       <Contact />
     </main>
   </div>
