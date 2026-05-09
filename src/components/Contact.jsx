@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getPersonalProfile, getSocialLinks } from '../api';
 
 const Contact = () => {
+  const [profile, setProfile] = useState(null);
+  const [socials, setSocials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([getPersonalProfile(), getSocialLinks()])
+      .then(([profileRes, socialsRes]) => {
+        setProfile(profileRes.data);
+        setSocials(socialsRes.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching contact data:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return null;
+
   return (
     <section className="px-6 py-24 max-w-7xl mx-auto border-t border-white/5" id="contact">
       <div className="text-center mb-16">
@@ -12,7 +32,7 @@ const Contact = () => {
           Let's Build <span className="text-accent">The Future</span>
         </h2>
         <p className="text-text-muted text-lg max-w-2xl mx-auto">
-          Passionate about learning and ready to contribute to real-world projects. Eager to bring my engineering mindset to a dynamic software team.
+          {profile?.tagline || "Passionate about learning and ready to contribute to real-world projects. Eager to bring my engineering mindset to a dynamic software team."}
         </p>
       </div>
 
@@ -26,15 +46,15 @@ const Contact = () => {
           <ul className="space-y-6 text-text-muted">
             <li className="flex justify-between border-b border-white/5 pb-4">
               <span className="font-mono text-sm uppercase tracking-wider text-white">Date of Birth</span>
-              <span>12/03/2001</span>
+              <span>{profile?.date_of_birth || "12/03/2001"}</span>
             </li>
             <li className="flex justify-between border-b border-white/5 pb-4">
               <span className="font-mono text-sm uppercase tracking-wider text-white">Father's Name</span>
-              <span>Sanjiv Kumar Singh</span>
+              <span>{profile?.fathers_name || "Sanjiv Kumar Singh"}</span>
             </li>
             <li className="flex justify-between border-b border-white/5 pb-4">
               <span className="font-mono text-sm uppercase tracking-wider text-white">Nationality</span>
-              <span>Indian</span>
+              <span>{profile?.nationality || "Indian"}</span>
             </li>
           </ul>
         </div>
@@ -42,32 +62,46 @@ const Contact = () => {
         {/* Contact Links */}
         <div className="grid grid-cols-2 gap-6">
           {/* Email */}
-          <a href="mailto:alakh0254@gmail.com" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
+          <a href={`mailto:${profile?.email || 'alakh0254@gmail.com'}`} className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
             <span className="material-symbols-outlined text-accent text-3xl mb-4 group-hover:scale-110 transition-transform">mail</span>
             <h3 className="font-bold text-white mb-2">Email</h3>
-            <p className="text-text-muted text-xs break-all">alakh0254@gmail.com</p>
+            <p className="text-text-muted text-xs break-all">{profile?.email || "alakh0254@gmail.com"}</p>
           </a>
 
           {/* Phone */}
-          <a href="tel:8006578823" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
+          <a href={`tel:${profile?.phone || '8006578823'}`} className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
             <span className="material-symbols-outlined text-accent text-3xl mb-4 group-hover:scale-110 transition-transform">call</span>
             <h3 className="font-bold text-white mb-2">Phone</h3>
-            <p className="text-text-muted text-xs">+91 8006578823</p>
+            <p className="text-text-muted text-xs">{profile?.phone || "+91 8006578823"}</p>
           </a>
 
-          {/* LinkedIn */}
-          <a href="#" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
-            <span className="material-symbols-outlined text-accent text-3xl mb-4 group-hover:scale-110 transition-transform">work</span>
-            <h3 className="font-bold text-white mb-2">LinkedIn</h3>
-            <p className="text-text-muted text-xs">Connect</p>
-          </a>
-
-          {/* GitHub */}
-          <a href="#" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
-            <span className="material-symbols-outlined text-accent text-3xl mb-4 group-hover:scale-110 transition-transform">code</span>
-            <h3 className="font-bold text-white mb-2">GitHub</h3>
-            <p className="text-text-muted text-xs">Follow</p>
-          </a>
+          {/* Dynamic Social Links */}
+          {socials.map((social) => (
+            <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform">
+              <span className="material-symbols-outlined text-accent text-3xl mb-4 group-hover:scale-110 transition-transform">
+                {social.platform.toLowerCase().includes('github') ? 'code' : 
+                 social.platform.toLowerCase().includes('linkedin') ? 'work' : 'link'}
+              </span>
+              <h3 className="font-bold text-white mb-2">{social.platform}</h3>
+              <p className="text-text-muted text-xs">Connect</p>
+            </a>
+          ))}
+          
+          {/* Fallback if no socials */}
+          {socials.length === 0 && (
+            <>
+              <a href="#" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform opacity-50">
+                <span className="material-symbols-outlined text-accent text-3xl mb-4">work</span>
+                <h3 className="font-bold text-white mb-2">LinkedIn</h3>
+                <p className="text-text-muted text-xs">Offline</p>
+              </a>
+              <a href="#" className="glass-panel p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-transform opacity-50">
+                <span className="material-symbols-outlined text-accent text-3xl mb-4">code</span>
+                <h3 className="font-bold text-white mb-2">GitHub</h3>
+                <p className="text-text-muted text-xs">Offline</p>
+              </a>
+            </>
+          )}
         </div>
       </div>
     </section>
