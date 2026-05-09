@@ -1,54 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAchievements } from '../api';
 
 const Achievements = () => {
+  const [achievements, setAchievements] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAchievements()
+      .then(res => setAchievements(res.data))
+      .catch(err => console.error("Achievements Load Error:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-24 container-custom" id="achievements">
+        <div className="skeleton h-10 w-64 mb-12"></div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="skeleton h-48 w-full rounded-2xl"></div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (achievements.length === 0) return null;
+
   return (
-    <section className="px-6 py-24 max-w-7xl mx-auto border-t border-white/5" id="achievements">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-          Milestones & <span className="text-accent">Growth</span>
-        </h2>
-        <p className="text-text-muted text-lg max-w-2xl mx-auto">
-          Tracking my progress as I dive deeper into software development.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        {/* Achievement 1 */}
-        <div className="glass-panel p-8">
-          <div className="w-12 h-12 rounded-full border-2 border-accent/30 flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined text-accent text-xl">school</span>
-          </div>
-          <h3 className="text-xl font-heading font-bold text-white mb-2">Engineering Transition</h3>
-          <p className="text-xs font-mono text-accent mb-4">Electrical to Software</p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Successfully bridging the gap between hardware knowledge and software engineering. Applying logical circuit concepts to code architecture and algorithms.
+    <section className="py-24 relative overflow-hidden" id="achievements">
+      <div className="container-custom">
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Milestones & <span className="text-accent">Growth</span>
+          </h2>
+          <p className="text-text-muted text-lg max-w-2xl">
+            A track record of consistent learning, certifications, and key accomplishments in the field of software engineering.
           </p>
         </div>
 
-        {/* Achievement 2 */}
-        <div className="glass-panel p-8">
-          <div className="w-12 h-12 rounded-full border-2 border-accent/30 flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined text-accent text-xl">local_fire_department</span>
-          </div>
-          <h3 className="text-xl font-heading font-bold text-white mb-2">100 Days of Code</h3>
-          <p className="text-xs font-mono text-accent mb-4">Self-Driven Learning</p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Committed to consistent daily learning. Built multiple small projects, solved logic puzzles, and consistently improved my foundational coding skills.
-          </p>
-        </div>
-
-        {/* Achievement 3 */}
-        <div className="glass-panel p-8">
-          <div className="w-12 h-12 rounded-full border-2 border-accent/30 flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined text-accent text-xl">folder_special</span>
-          </div>
-          <h3 className="text-xl font-heading font-bold text-white mb-2">First Full-Stack App</h3>
-          <p className="text-xs font-mono text-accent mb-4">Milestone Reached</p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Successfully connected a frontend interface with a backend API. Learned the intricacies of data fetching, state management, and CORS.
-          </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {achievements.map(ach => (
+            <div key={ach.id} className="glass-panel p-8 group hover:-translate-y-2 transition-all duration-500">
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-accent/5 flex items-center justify-center border border-accent/10 group-hover:bg-accent group-hover:text-bg-main transition-colors duration-500">
+                  <span className="material-symbols-outlined">emoji_events</span>
+                </div>
+                <span className="font-mono text-[10px] text-accent/50 uppercase tracking-widest">{ach.date}</span>
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-white group-hover:text-accent transition-colors">{ach.title}</h3>
+              <p className="text-accent/60 text-xs font-medium mb-4 uppercase tracking-tighter">{ach.issuer}</p>
+              <p className="text-text-muted/80 text-sm leading-relaxed line-clamp-3">
+                {ach.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
+      
+      {/* Decorative Blob */}
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/5 blur-[100px] rounded-full pointer-events-none"></div>
     </section>
   );
 };

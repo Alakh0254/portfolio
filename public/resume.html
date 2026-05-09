@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alakh Singh - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Outfit:wght@300..800&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "bg-main": "#091517",
+                        "card-bg": "#101e22",
+                        "accent": "#00d2d3",
+                        "text-main": "#ffffff",
+                        "text-muted": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["Roboto Mono", "monospace"],
+                        "heading": ["Outfit", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #091517;
+            color: #ffffff;
+            /* Ensures colors print exactly as they look on screen */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 12mm;
+            box-sizing: border-box;
+            background-color: #091517;
+            overflow: hidden;
+        }
+
+        .glass {
+            background: #101e22;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+      INSTRUCTIONS TO SAVE AS PDF:
+      1. Open this page in Google Chrome.
+      2. Press Ctrl+P (or Cmd+P on Mac) to open the print dialog.
+      3. Set Destination to "Save as PDF".
+      4. Set Paper size to "A4".
+      5. Expand "More settings" and ensure "Background graphics" is CHECKED.
+      6. Set Margins to "None" or "Default".
+      7. Click Save! 
+    -->
+    <div class="a4-page flex flex-col gap-4 font-sans">
+        <!-- Header -->
+        <header class="flex justify-between items-end border-b border-white/10 pb-4">
+            <div>
+                <h1 class="text-4xl font-heading font-extrabold tracking-tight">ALAKH <span
+                        class="text-text-muted">SINGH</span></h1>
+                <h2 class="text-accent font-heading text-lg mt-1">Aspiring Software Engineer</h2>
+            </div>
+            <div class="text-right text-xs text-text-muted space-y-1 font-mono">
+                <p class="flex items-center justify-end gap-1"><span
+                        class="material-symbols-outlined text-[14px] text-accent">mail</span> alakh0254@gmail.com</p>
+                <p class="flex items-center justify-end gap-1"><span
+                        class="material-symbols-outlined text-[14px] text-accent">call</span> +91 8006578823</p>
+                <p class="flex items-center justify-end gap-1"><span
+                        class="material-symbols-outlined text-[14px] text-accent">link</span> alakhsingh.online</p>
+                <p class="flex items-center justify-end gap-1"><span
+                        class="material-symbols-outlined text-[14px] text-accent">location_on</span> India</p>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section>
+            <p class="text-sm text-text-muted leading-relaxed">
+                Transitioning from Electrical Engineering to Software Development. Passionate about learning, building
+                clean interfaces, and crafting scalable digital experiences. Applying an engineering mindset to break
+                down complex problems into logical, efficient software solutions.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-3 gap-4 flex-grow">
+            <!-- Left Column: Skills & Education -->
+            <div class="col-span-1 space-y-4">
+                <!-- Skills -->
+                <section class="glass p-4">
+                    <h3
+                        class="text-accent font-heading font-bold text-sm uppercase tracking-wider mb-3 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">code</span> Skills</h3>
+                    <div class="space-y-3 text-xs text-text-muted">
+                        <div>
+                            <strong class="text-white block mb-1">Languages</strong>
+                            <p>JavaScript, Python, HTML5, CSS3</p>
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">Frameworks</strong>
+                            <p>React.js, Tailwind CSS, Flask</p>
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">Tools</strong>
+                            <p>Git, VS Code, REST APIs, DOM</p>
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">Core Concepts</strong>
+                            <p>Problem Solving, Responsive Design, State Management</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section class="glass p-4">
+                    <h3
+                        class="text-accent font-heading font-bold text-sm uppercase tracking-wider mb-3 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">school</span> Education</h3>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <strong class="text-white">B. Tech (Electrical)</strong>
+                            <p class="text-accent font-mono text-[10px]">2022 - 2026</p>
+                            <p class="text-text-muted text-[10px]">Dayalbagh Educational Institute</p>
+                        </div>
+                        <div>
+                            <strong class="text-white">Diploma</strong>
+                            <p class="text-accent font-mono text-[10px]">2018 - 2021</p>
+                            <p class="text-text-muted text-[10px]">Dayalbagh Educational Institute</p>
+                        </div>
+                        <div>
+                            <strong class="text-white">Intermediate</strong>
+                            <p class="text-accent font-mono text-[10px]">2016 - 2018</p>
+                            <p class="text-text-muted text-[10px]">Dayalbagh Educational Institute</p>
+                        </div>
+                        <div>
+                            <strong class="text-white">High School</strong>
+                            <p class="text-accent font-mono text-[10px]">2016</p>
+                            <p class="text-text-muted text-[10px]">U.P Board</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Projects & Achievements -->
+            <div class="col-span-2 space-y-4">
+                <!-- Projects -->
+                <section class="glass p-4">
+                    <h3
+                        class="text-accent font-heading font-bold text-sm uppercase tracking-wider mb-3 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">web</span> Projects</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-2 border-white/10 pl-3">
+                            <div class="flex justify-between items-start">
+                                <strong class="text-white text-sm">Personal Portfolio</strong>
+                                <span class="font-mono text-[10px] text-accent">React, Tailwind</span>
+                            </div>
+                            <p class="text-xs text-text-muted mt-1 leading-relaxed">A fully responsive, modern portfolio
+                                website built to showcase my transition into software engineering. Features a custom
+                                dark theme, glassmorphic UI, and component-based architecture.</p>
+                        </div>
+
+                        <div class="border-l-2 border-white/10 pl-3">
+                            <div class="flex justify-between items-start">
+                                <strong class="text-white text-sm">Weather Dashboard</strong>
+                                <span class="font-mono text-[10px] text-accent">JS, REST API</span>
+                            </div>
+                            <p class="text-xs text-text-muted mt-1 leading-relaxed">A dynamic weather application
+                                fetching real-time data from the OpenWeather API. Implemented async/await for data
+                                fetching and dynamically updating the DOM.</p>
+                        </div>
+
+                        <div class="border-l-2 border-white/10 pl-3">
+                            <div class="flex justify-between items-start">
+                                <strong class="text-white text-sm">Task Management API</strong>
+                                <span class="font-mono text-[10px] text-accent">Python, Flask</span>
+                            </div>
+                            <p class="text-xs text-text-muted mt-1 leading-relaxed">A foundational backend project
+                                demonstrating CRUD operations. Built a lightweight RESTful API to manage tasks,
+                                utilizing JSON for data storage.</p>
+                        </div>
+
+                        <div class="border-l-2 border-white/10 pl-3">
+                            <div class="flex justify-between items-start">
+                                <strong class="text-white text-sm">Interactive Quiz App</strong>
+                                <span class="font-mono text-[10px] text-accent">HTML, CSS, JS</span>
+                            </div>
+                            <p class="text-xs text-text-muted mt-1 leading-relaxed">A vanilla JavaScript application
+                                testing logic and state management. Features multiple-choice questions, score tracking,
+                                and dynamic UI updates.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Achievements -->
+                <section class="glass p-4">
+                    <h3
+                        class="text-accent font-heading font-bold text-sm uppercase tracking-wider mb-3 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">emoji_events</span> Achievements &
+                        Milestones</h3>
+                    <ul class="space-y-2 text-xs text-text-muted list-disc list-inside">
+                        <li><strong class="text-white">Engineering Transition:</strong> Successfully bridging the gap
+                            between electrical hardware knowledge and software engineering.</li>
+                        <li><strong class="text-white">100 Days of Code:</strong> Committed to consistent daily
+                            learning, building multiple small projects and solving logic puzzles.</li>
+                        <li><strong class="text-white">First Full-Stack App:</strong> Successfully connected a frontend
+                            interface with a backend API, learning data fetching and CORS.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

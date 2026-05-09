@@ -1,4 +1,15 @@
+import React, { useState, useEffect } from 'react';
+import { getPersonalInfo, getProjects } from '../api';
+
 const Profile = () => {
+  const [info, setInfo] = useState(null);
+  const [projectCount, setProjectCount] = useState(0);
+
+  useEffect(() => {
+    getPersonalInfo().then(res => setInfo(res.data)).catch(err => console.error(err));
+    getProjects().then(res => setProjectCount(res.data.length)).catch(err => console.error(err));
+  }, []);
+
   return (
     <section className="px-margin max-w-7xl mx-auto py-xl">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
@@ -11,16 +22,12 @@ const Profile = () => {
             Profile Synopsis
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Extensive association with{" "}
-            <span className="text-tertiary">Dayalbagh Educational Institute</span>
-            , focused on practical application of electrical principles. Key
-            contributor to the <span className="text-primary">DEVISE project</span>
-            , demonstrating leadership in collaborative technical environments.
+            {info?.about_text || "Extensive association with Dayalbagh Educational Institute, focused on practical application of electrical principles."}
           </p>
         </div>
         <div className="glass-card p-lg rounded-xl border border-primary/10 flex flex-col justify-center text-center">
           <span className="font-headline-xl text-headline-xl text-tertiary">
-            5+
+            {projectCount > 0 ? `${projectCount}+` : '5+'}
           </span>
           <span className="font-label-mono text-label-mono text-on-surface-variant uppercase">
             Projects Completed
@@ -34,8 +41,7 @@ const Profile = () => {
             Core Expertise
           </h3>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Expertise in MATLAB and Simulink for advanced power system modeling
-            and simulation.
+            Expertise in modern web technologies for advanced scalable systems and dynamic interfaces.
           </p>
         </div>
         <div className="glass-card p-lg rounded-xl border border-outline/10 group hover:border-tertiary/30 transition-colors">
@@ -46,8 +52,7 @@ const Profile = () => {
             Practical Innovation
           </h3>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Translating theoretical electrical concepts into robust
-            organizational growth strategies.
+            Translating theoretical concepts into robust organizational growth strategies.
           </p>
         </div>
         <div className="glass-card p-lg rounded-xl border border-outline/10 group hover:border-tertiary/30 transition-colors">
@@ -58,8 +63,7 @@ const Profile = () => {
             Institutional Roots
           </h3>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Lifelong learner and contributor at the prestigious Dayalbagh
-            Educational Institute.
+            Lifelong learner and contributor at the prestigious Dayalbagh Educational Institute.
           </p>
         </div>
       </div>
