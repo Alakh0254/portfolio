@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getSkills } from '../api';
+import React from 'react';
 
 const Expertise = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getSkills()
-      .then(res => {
-        setSkills(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching skills:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  // Default expertise areas if no skills are defined in backend
-  const defaultExpertise = [
+  // Static expertise areas that stay consistent regardless of dashboard changes
+  const expertiseAreas = [
     {
       name: "Frontend Basics",
       description: "Crafting responsive and interactive web interfaces. Focusing on semantic HTML, modern CSS (Tailwind), and dynamic JavaScript logic.",
@@ -41,8 +25,6 @@ const Expertise = () => {
     }
   ];
 
-  const displaySkills = skills.length > 0 ? skills : defaultExpertise;
-
   return (
     <section className="px-6 py-24 max-w-7xl mx-auto" id="expertise">
       <div className="text-center mb-16">
@@ -55,14 +37,14 @@ const Expertise = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {displaySkills.map((skill, index) => (
+        {expertiseAreas.map((skill, index) => (
           <div key={index} className="glass-panel p-8">
             <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
               <span className="material-symbols-outlined text-accent text-2xl">{skill.icon_class || 'code'}</span>
             </div>
             <h3 className="text-xl font-heading font-bold text-white mb-3">{skill.name}</h3>
             <p className="text-text-muted leading-relaxed">
-              {skill.description || `${skill.name} proficiency: ${skill.proficiency}%`}
+              {skill.description}
             </p>
           </div>
         ))}
@@ -72,3 +54,4 @@ const Expertise = () => {
 };
 
 export default Expertise;
+

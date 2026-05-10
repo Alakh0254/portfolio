@@ -309,7 +309,7 @@ const Dashboard = () => {
   const tabs = [
     { id: 'personal-profile', label: 'Personal Profile', icon: 'fingerprint' },
     { id: 'about', label: 'About Me', icon: 'person' },
-    { id: 'skills', label: 'Expertise', icon: 'layers' },
+    { id: 'skills', label: 'Technical Skills', icon: 'layers' },
     { id: 'experience', label: 'Experience', icon: 'work' },
     { id: 'projects', label: 'Projects', icon: 'grid_view' },
     { id: 'education', label: 'Education', icon: 'school' },

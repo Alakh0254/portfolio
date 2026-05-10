@@ -68,5 +68,14 @@ Hierarchy is achieved through **transparency, borders, and light.**
 - **The "IDE Window":** A signature component featuring macOS-style window controls, a custom header, and syntax-highlighted code.
 - **Glass Cards:** Cards with 1px borders and backdrop blurs that appear to float over the dark teal void.
 - **Action Pills:** Small, bordered badges with pulsing status indicators.
-- **Buttons:** High-contrast buttons with solid cyan backgrounds for primary actions and bordered "ghost" styles for secondary actions.
+- **Timeline Experience:** A vertical timeline layout for work history, using centered dots and glass panels to display roles and descriptions chronologically.
+- **About Grid:** A two-column layout combining a high-fidelity image with a clean, structured bio and contact metadata.
 - **Academic Tables:** Structured, minimalist tables with horizontal dividers and subtle hover states for tabular data.
+
+## Data Architecture
+
+The portfolio follows a **Single-Source-of-Truth** model, where content is managed via a dedicated Admin Dashboard and served through a FastAPI backend.
+
+- **Dynamic Sections:** Hero (Personal Profile), About Me, Experience, Skills, Projects, Achievements, and Scholastics are all populated via API calls.
+- **Real-time Synchronization:** Updates made in the dashboard are instantly reflected on the frontend without requiring a rebuild.
+- **Backend-Driven SEO:** Metadata like page titles and descriptions are derived from the dynamic profile data.

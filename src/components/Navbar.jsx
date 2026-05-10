@@ -12,7 +12,10 @@ const Navbar = () => {
         </a>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a className="text-text-muted hover:text-accent transition-colors" href="#about">About</a>
           <a className="text-text-muted hover:text-accent transition-colors" href="#expertise">Expertise</a>
+          <a className="text-text-muted hover:text-accent transition-colors" href="#experience">Experience</a>
+          <a className="text-text-muted hover:text-accent transition-colors" href="#skills">Skills</a>
           <a className="text-text-muted hover:text-accent transition-colors" href="#projects">Projects</a>
           <a className="text-text-muted hover:text-accent transition-colors" href="#achievements">Achievements</a>
           <a className="text-text-muted hover:text-accent transition-colors" href="#scholastics">Academic</a>
